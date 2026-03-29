@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>得意先追加</h3>
+<form method="POST" class="col-md-6">
+  <div class="mb-3"><input type="text" name="name" class="form-control" placeholder="会社名・氏名" required></div>
+  <div class="mb-3"><input type="tel" name="phone" class="form-control" placeholder="電話番号"></div>
+  <div class="mb-3"><input type="email" name="email" class="form-control" placeholder="メールアドレス"></div>
+  <div class="mb-3"><input type="text" name="address" class="form-control" placeholder="住所"></div>
+  <button class="btn btn-primary">追加</button>
+  <a href="/clients" class="btn btn-secondary ms-2">戻る</a>
+</form>
+{% endblock %}

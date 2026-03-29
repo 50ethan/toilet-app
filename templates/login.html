@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+<div class="col-md-4">
+<h3 class="mb-3">ログイン</h3>
+<form method="POST">
+  <div class="mb-3"><input type="email" name="email" class="form-control" placeholder="メールアドレス" required></div>
+  <div class="mb-3"><input type="password" name="password" class="form-control" placeholder="パスワード" required></div>
+  <button class="btn btn-primary w-100">ログイン</button>
+</form>
+<a href="/register" class="d-block mt-2 text-center">新規登録</a>
+<hr>
+<div class="mt-3 p-3" style="background:#f8f9fa;border-radius:8px;font-size:0.9em;">
+  <strong>📋 かんたん使い方</strong><br>
+  ① 得意先・業者を登録<br>
+  ② 新規案件から設置・撤去・汲み取りを登録<br>
+  ③ 業者へ自動でメール送信<br>
+  <hr style="margin:8px 0;">
+  <small class="text-muted">AIの導入・活用支援は
+  <a href="https://sora-nextai.com" target="_blank">株式会社SORA-NEXTAI</a> まで</small>
+</div>
+</div></div>
+{% endblock %}

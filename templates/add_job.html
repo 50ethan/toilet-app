@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>新規案件登録</h3>
+<form method="POST" class="col-md-6" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label class="form-label">得意先</label>
+    <select name="client_id" class="form-select" required>
+      {% for c in clients %}<option value="{{ c.id }}">{{ c.name }}</option>{% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">種別</label>
+    <select name="job_type" class="form-select" required>
+      <option value="設置">設置</option>
+      <option value="撤去">撤去</option>
+      <option value="汲み取り">汲み取り</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">業者</label>
+    <select name="vendor_id" class="form-select" required>
+      {% for v in vendors %}<option value="{{ v.id }}">{{ v.name }}</option>{% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">現場名</label>
+    <input type="text" name="site_name" class="form-control" placeholder="例：田中邸新築工事">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">現場住所</label>
+    <input type="text" name="site_address" class="form-control" placeholder="例：大阪府大阪市北区...">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">トイレ種別</label>
+    <select name="toilet_type" class="form-select">
+      <option value="仮設トイレ（和式）">仮設トイレ（和式）</option>
+      <option value="仮設トイレ（洋式）">仮設トイレ（洋式）</option>
+      <option value="仮設トイレ（小のみ）">仮設トイレ（小のみ）</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">排水方式</label>
+    <select name="flush_type" class="form-select">
+      <option value="汲み取り式">汲み取り式</option>
+      <option value="水洗">水洗</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">地図・指示図（添付ファイル）</label>
+    <input type="file" name="attachments" class="form-control" accept=".pdf,.jpg,.jpeg,.png" multiple>
+    <div class="form-text">複数ファイル選択可（Ctrlキーを押しながら選択）</div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">希望日時</label>
+    <input type="text" name="desired_date" class="form-control" placeholder="例：2026/03/05 午前中" required>
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" name="fax_sent" class="form-check-input" id="fax">
+    <label class="form-check-label" for="fax">FAX送付済み（設置の場合）</label>
+  </div>
+  <button class="btn btn-primary">登録してメール送信</button>
+  <a href="/" class="btn btn-secondary ms-2">戻る</a>
+</form>
+{% endblock %}

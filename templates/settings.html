@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>メール設定</h3>
+<form method="POST" class="col-md-6">
+  <div class="mb-3">
+    <label class="form-label">SMTPサーバー</label>
+    <input type="text" name="mail_server" class="form-control" value="{{ mail_server }}" placeholder="smtp.gmail.com">
+    <div class="form-text">
+      Gmail: smtp.gmail.com<br>
+      独自ドメイン(ロリポップ等): mail.ドメイン名<br>
+      Yahoo: smtp.mail.yahoo.co.jp
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">ポート番号</label>
+    <input type="number" name="mail_port" class="form-control" value="{{ mail_port }}" placeholder="587">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">メールアドレス</label>
+    <input type="email" name="mail_username" class="form-control" value="{{ mail_username }}" placeholder="your@email.com">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">パスワード（Gmailはアプリパスワード）</label>
+    <input type="password" name="mail_password" class="form-control" value="{{ mail_password }}">
+  </div>
+  <div class="mb-3 form-check">
+    <input type="checkbox" name="mail_use_tls" class="form-check-input" id="tls" {% if mail_use_tls == "on" %}checked{% endif %}>
+    <label class="form-check-label" for="tls">TLS使用（通常はON）</label>
+  </div>
+  <button class="btn btn-primary">保存</button>
+</form>
+{% endblock %}

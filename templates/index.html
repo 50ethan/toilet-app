@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if not jobs %}
+<div class="p-4 mb-4" style="background:#e8f8f0;border-radius:12px;border-left:5px solid #198754;">
+  <h5>🚀 使い方ガイド</h5>
+  <div class="row mt-3">
+    <div class="col-md-3 text-center">
+      <div style="font-size:2em;">①</div>
+      <strong>得意先登録</strong>
+      <p class="small text-muted">メニューの「得意先」から取引先を登録</p>
+    </div>
+    <div class="col-md-3 text-center">
+      <div style="font-size:2em;">②</div>
+      <strong>業者登録</strong>
+      <p class="small text-muted">「業者」からトイレ業者を登録</p>
+    </div>
+    <div class="col-md-3 text-center">
+      <div style="font-size:2em;">③</div>
+      <strong>案件登録</strong>
+      <p class="small text-muted">「新規案件」から設置・撤去・汲み取りを登録</p>
+    </div>
+    <div class="col-md-3 text-center">
+      <div style="font-size:2em;">④</div>
+      <strong>業者へ自動メール</strong>
+      <p class="small text-muted">登録と同時に業者へ自動でメール送信</p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>案件一覧</h3>
+  <a href="/jobs/add" class="btn btn-warning">＋ 新規案件</a>
+</div>
+
+{% if jobs %}
+<table class="table table-hover">
+  <thead>
+    <tr><th>得意先</th><th>種別</th><th>現場名</th><th>業者</th><th>希望日時</th><th>状態</th><th></th></tr>
+  </thead>
+  <tbody>
+  {% for job in jobs %}
+  <tr>
+    <td>{{ job.client.name }}</td>
+    <td>{{ job.job_type }}</td>
+    <td>{{ job.site_name }}</td>
+    <td>{{ job.vendor.name }}</td>
+    <td>{{ job.desired_date if job.desired_date else '' }}</td>
+    <td>
+      {% if job.status == '返答待ち' %}<span class="badge bg-warning text-dark">返答待ち</span>
+      {% elif job.status == '確定' %}<span class="badge bg-success">確定</span>
+      {% elif job.status == 'キャンセル' %}<span class="badge bg-danger">キャンセル</span>
+      {% else %}<span class="badge bg-secondary">{{ job.status }}</span>{% endif %}
+    </td>
+    <td><a href="/jobs/{{ job.id }}" class="btn btn-sm btn-outline-primary">詳細</a></td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="text-center text-muted mt-5">
+  <p>まだ案件がありません。「新規案件」から登録してください！</p>
+</div>
+{% endif %}
+
+<hr class="mt-5">
+<div class="text-center p-3" style="background:#0a1628;border-radius:12px;color:#fff;">
+  <img src="/static/logo.png" height="40" class="mb-2"><br>
+  <strong>AIの導入・活用支援は株式会社SORA-NEXTAIにお任せください</strong><br>
+  <small style="color:#00bfff;">業務効率化・AI活用・Webアプリ開発</small><br>
+  <a href="https://sora-nextai.com" target="_blank" class="btn btn-outline-info btn-sm mt-2">🌐 sora-nextai.com</a>
+  <a href="mailto:info@sora-nextai.com" class="btn btn-outline-light btn-sm mt-2 ms-2">📧 お問い合わせ</a>
+</div>
+
+{% endblock %}
